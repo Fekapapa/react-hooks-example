@@ -1,21 +1,38 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 type Props = {};
 
 interface ComponentState {
     name: string;
     age: number;
+    width: number;
 }
 
 type State = Readonly<ComponentState>;
 
-export class GreetingClass extends React.Component<Props, State> {
+export class TitleClass extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
       name: 'Bilbo Baggins',
       age: 25,
+      width: window.innerWidth,
     };
+  }
+
+  componentDidMount() {
+    const { name, age } = this.state;
+    document.title = `${name} | ${age}`;
+    window.addEventListener('resize', this.onHandleResize);
+  }
+
+  componentDidUpdate() {
+    const { name, age } = this.state;
+    document.title = `${name} | ${age}`;
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.onHandleResize);
   }
 
   onHandleNameChange = (event: React.SyntheticEvent<HTMLInputElement>) => {
@@ -30,8 +47,13 @@ export class GreetingClass extends React.Component<Props, State> {
     });
   }
 
+  onHandleResize = () => {
+    this.setState({ width: window.innerWidth });
+  }
+
   render() {
-    const { name, age } = this.state;
+    const { name, age, width } = this.state;
+
     return (
       <div className="Component__useState">
         <section className="row">
@@ -42,16 +64,38 @@ export class GreetingClass extends React.Component<Props, State> {
           <span>Age</span>
           <input type="text" value={age} onChange={this.onHandleAgeChange} />
         </section>
+        <section className="row">
+          <span>Width</span>
+          <input type="text" value={width} disabled />
+        </section>
       </div>
     );
   }
 }
 
-export const Greeting = () => {
+export const Title = () => {
   const [name, setName] = useState('Albus Dumbledore');
   const [age, setAge] = useState(175);
 
-  const handleNameChange = (event: React.SyntheticEvent<HTMLInputElement>) => {
+  useEffect(() => {
+    document.title = `${name} | ${age}`;
+  },
+  //what happens if I activate the next line?
+  //[name]
+  );
+
+  const [width, setWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => setWidth(window.innerWidth)
+
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  });
+
+   const handleNameChange = (event: React.SyntheticEvent<HTMLInputElement>) => {
     setName(event.currentTarget.value);
   }
 
@@ -68,6 +112,10 @@ export const Greeting = () => {
       <section className="row">
         <span>Age</span>
         <input type="text" value={age} onChange={handleAgeChange} />
+      </section>
+      <section className="row">
+        <span>Width</span>
+        <input type="text" value={width} disabled />
       </section>
     </div>
   );
