@@ -14,10 +14,12 @@ const useWindowWidth = () => {
   return width;
 }
 
-const useDocumentTitle = (title: string) => {
+const useDocumentTitle = (titleValue: string) => {
+  const title = titleValue;
+
   useEffect(() => {
     document.title = title;
-  });
+  }, [title]);
 }
 
 const useFormInput = (initialValue: string) => {

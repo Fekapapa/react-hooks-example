@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 type Props = {};
 
@@ -13,8 +13,8 @@ export class GreetingClass extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
-      name: 'Bilbo Baggins',
-      age: 25,
+      name: 'Csavardi Samu',
+      age: 21,
     };
   }
 
@@ -35,6 +35,9 @@ export class GreetingClass extends React.Component<Props, State> {
     return (
       <div className="Component__useState">
         <section className="row">
+          <h2>state - Class</h2>
+        </section>
+        <section className="row">
           <span>Name</span>
           <input type="text" value={name} onChange={this.onHandleNameChange} />
         </section>
@@ -45,30 +48,4 @@ export class GreetingClass extends React.Component<Props, State> {
       </div>
     );
   }
-}
-
-export const Greeting = () => {
-  const [name, setName] = useState('Albus Dumbledore');
-  const [age, setAge] = useState(175);
-
-  const handleNameChange = (event: React.SyntheticEvent<HTMLInputElement>) => {
-    setName(event.currentTarget.value);
-  }
-
-  const handleAgeChange = (event: React.SyntheticEvent<HTMLInputElement>) => {
-    setAge(Number(event.currentTarget.value));
-  }
-
-  return (
-    <div className="Component__useState">
-      <section className="row">
-        <span>Name</span>
-        <input type="text" value={name} onChange={handleNameChange} />
-      </section>
-      <section className="row">
-        <span>Age</span>
-        <input type="text" value={age} onChange={handleAgeChange} />
-      </section>
-    </div>
-  );
 }

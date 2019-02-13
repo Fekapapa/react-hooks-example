@@ -8,28 +8,8 @@ body {
   margin: 0;
 }
 
-.main-heading {
-  font-size: 22px;
-  padding-left: 5px;
-}
-
-.section {
-  display: flex; 
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: center;
-  flex-wrap: wrap;
-  padding: 10px;
-}
-
 .section div {
   width: 400px;
-}
-
-.section .heading {
-  font-size: 45px;
-  font-weight: 700;
-  margin: 0 4px;
 }
 
 .row {
@@ -62,19 +42,6 @@ body {
   background-color: rgba(244, 244, 244, 0.9);
 }
 
-.purple-bg {
-  background-color: purple;
-  color: white;
-}
-
-.gainsboro-bg {
-  background-color: gainsboro;
-}
-
-.white-bg {
-  background-color: white;
-}
-
 .appContainer {
   display: flex;
   justify-content: center;
@@ -83,15 +50,28 @@ body {
 }
 
 .flex-row {
-  margin-top: 50px;
+  padding-top: 50px;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+.background-setter {
+  background-color: rgba(253, 239, 161, 0.5);
+  margin: 0;
+  padding: 10px 0;
+  width: 100%;
+  text-align: center;
+}
+
+.background-setter:nth-of-type(odd) {
+  background-color: rgba(198, 204, 235, 0.7);
 }
 
 .Component__useState {
   width: 350px;
 }
 
-.Component__useState + .Component__useState {
-  margin-left: 100px;
+h2.background-setter {
+  padding-top: 40px;
 }

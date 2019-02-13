@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
 type Props = {};
 
@@ -57,6 +57,9 @@ export class TitleClass extends React.Component<Props, State> {
     return (
       <div className="Component__useState">
         <section className="row">
+          <h2>update - Class</h2>
+        </section>
+        <section className="row">
           <span>Name</span>
           <input type="text" value={name} onChange={this.onHandleNameChange} />
         </section>
@@ -71,52 +74,4 @@ export class TitleClass extends React.Component<Props, State> {
       </div>
     );
   }
-}
-
-export const Title = () => {
-  const [name, setName] = useState('Albus Dumbledore');
-  const [age, setAge] = useState(175);
-
-  useEffect(() => {
-    document.title = `${name} | ${age}`;
-  },
-  //what happens if I activate the next line?
-  //[name]
-  );
-
-  const [width, setWidth] = useState(window.innerWidth);
-
-  useEffect(() => {
-    const handleResize = () => setWidth(window.innerWidth)
-
-    window.addEventListener('resize', handleResize);
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  });
-
-   const handleNameChange = (event: React.SyntheticEvent<HTMLInputElement>) => {
-    setName(event.currentTarget.value);
-  }
-
-  const handleAgeChange = (event: React.SyntheticEvent<HTMLInputElement>) => {
-    setAge(Number(event.currentTarget.value));
-  }
-
-  return (
-    <div className="Component__useState">
-      <section className="row">
-        <span>Name</span>
-        <input type="text" value={name} onChange={handleNameChange} />
-      </section>
-      <section className="row">
-        <span>Age</span>
-        <input type="text" value={age} onChange={handleAgeChange} />
-      </section>
-      <section className="row">
-        <span>Width</span>
-        <input type="text" value={width} disabled />
-      </section>
-    </div>
-  );
 }
