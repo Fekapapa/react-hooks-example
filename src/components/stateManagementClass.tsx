@@ -3,8 +3,8 @@ import React from 'react';
 type Props = {};
 
 interface ComponentState {
-    name: string;
-    age: number;
+  name: string;
+  age: number;
 }
 
 type State = Readonly<ComponentState>;
